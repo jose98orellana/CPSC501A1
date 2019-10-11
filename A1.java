@@ -57,9 +57,9 @@ class Specialist extends Doctor {
 	}
 
 	public double calculateWage(int daysWorked) {
-		double erWage = erHours * 40;
-		double surgeryWage = surgeryHours * 50;
-		return erWage + surgeryWage;
+		double subWage = daysWorked * ((erHours * 40) + (surgeryHours * 50));
+		double taxCalc = subWage * 0.06;
+		return subWage - taxCalc;
 	}
 
 }
@@ -86,9 +86,9 @@ class Resident extends Doctor {
 	}
 
 	public double calculateWage(int daysWorked) {
-		double erWage = erHours * 25;
-		double surgeryWage = surgeryHours * 30;
-		return erWage + surgeryWage;
+		double subWage = daysWorked * ((erHours * 25) + (surgeryHours * 30));
+		double taxCalc = subWage * 0.06;
+		return subWage - taxCalc;
 	}
 }
 

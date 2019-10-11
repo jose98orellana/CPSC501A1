@@ -31,6 +31,15 @@ class Doctor {
 	public String getLastName() {
 		return lastName;
 	}
+
+	public double calculateWage(int daysWorked) {
+		double subWage = calcSubWage(daysWorked);
+		return subWage - calcTaxCalc(subWage);
+	}
+
+	public abstract double calcSubWage(int daysWorked);
+
+	public abstract double calcTaxCalc(double subWage);
 }
 
 class Specialist extends Doctor {
@@ -60,10 +69,12 @@ class Specialist extends Doctor {
 		surgeryHours = surgeryHours + addHours;
 	}
 
-	public double calculateWage(int daysWorked) {
-		double erWage = erHours * 40;
-		double surgeryWage = surgeryHours * 50;
-		return erWage + surgeryWage;
+	public double calcSubWage(int daysWorked) {
+		return daysWorked * ((erHours * 40) + (surgeryHours * 50));
+	}
+
+	public double calcTaxCalc(double subWage) {
+		return subWage * 0.06;
 	}
 
 }
@@ -85,10 +96,12 @@ class Resident extends Doctor {
 		surgeryHours = surgeryHours + addHours;
 	}
 
-	public double calculateWage(int daysWorked) {
-		double erWage = erHours * 25;
-		double surgeryWage = surgeryHours * 30;
-		return erWage + surgeryWage;
+	public double calcSubWage(int daysWorked) {
+		return daysWorked * ((erHours * 25) + (surgeryHours * 30));
+	}
+
+	public double calcTaxCalc(double subWage) {
+		return subWage * 0.06;
 	}
 }
 
