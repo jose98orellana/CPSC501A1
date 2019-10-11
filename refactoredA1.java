@@ -125,12 +125,13 @@ class Surgeon extends Specialist {
 class Surgery {
 
 	public String type;
-	public Surgeon s;
-	public int roomNumber;
+	public Surgeon surgeon;
+	public Room room;
 
-	public Surgery(Surgeon surgeon, String newType) {
-		this.s = surgeon;
+	public Surgery(Surgeon newSurgeon, String newType, int roomNumber) {
+		this.surgeon = newSurgeon;
 		this.type = newType;
+		this.room = new Room(roomNumber); 
 	}
 
  	public double getSurgeryCost() {
@@ -138,6 +139,35 @@ class Surgery {
  			return 2000;
  		} else if (type.equals("simple")) {
  			return 500;
+ 		} else {
+ 			return 1000;
+ 		}
+ 	}
+}
+
+class Room {
+
+	private int type;
+	private int roomNumber;
+	private boolean status;
+
+	public Room(int newRoomNumber) {
+		if (roomNumber < 301) {
+			type = 1;
+		} else if (roomNumber > 300 && roomNumber < 601) {
+			type = 2;
+		} else {
+			type = 3;
+		}
+		this.roomNumber = newRoomNumber;
+		this.status = TRUE;
+	}
+
+	public double getRoomCost() {
+ 		if (type == 1) {
+ 			return 500;
+ 		} else if (type == 2) {
+ 			return 750;
  		} else {
  			return 1000;
  		}
@@ -175,8 +205,8 @@ class Bill {
 
 	public static double calculateBill(Patient patient) {
 		double surgeryFee = patient.surgery.getSurgeryCost();
-		double surgeonFee = patient.surgery.s.getSurgeonCost();
-		double roomFee = 500;
+		double surgeonFee = patient.surgery.surgeon.getSurgeonCost();
+		double roomFee = patient.surgery.room.getRoomCost();
 		double hospitalFee = 300;
 		return surgeryFee + surgeonFee + roomFee + hospitalFee;
 	}
@@ -185,7 +215,7 @@ class Bill {
 public class A1 {
 	public static void main(String args[]) {
   		Surgeon s = new Surgeon("Jane", "Doe", "senior");
-  		Surgery c = new Surgery(s, "complicated");
+  		Surgery c = new Surgery(s, "complicated", 467);
   		Patient p = new Patient("John", "Smith", c);
 
   		System.out.println(p.getFirstName() + " " + p.getLastName() + " bill is $" + Bill.calculateBill(p));
