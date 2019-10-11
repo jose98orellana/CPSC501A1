@@ -209,7 +209,7 @@ class Patient {
 	}
 }
 
-public class A1 {
+public class refactoredA1 {
 	public static void main(String args[]) {
   		Surgeon s = new Surgeon("Jane", "Doe", "senior");
   		Surgery c = new Surgery(s, "complicated", 467);
