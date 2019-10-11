@@ -24,6 +24,13 @@ class Doctor {
 	public void setLastName(String value) {
 		lastName = value;
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
 }
 
 class Specialist extends Doctor {
@@ -35,10 +42,6 @@ class Specialist extends Doctor {
 	public Specialist(String first, String last, String newType){
 		super(first, last);
 		this.type = newType;
-	}
-
-	public String getLastName() {
-		return lastName;
 	}
 
 	public void setType(String newType) {
@@ -72,10 +75,6 @@ class Resident extends Doctor {
 
 	public Resident(String first, String last){
 		super(first, last);
-	}
-
-	public String getLastName() {
-		return lastName;
 	}
 
 	public void setERHours(double addHours) {
