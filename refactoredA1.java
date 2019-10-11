@@ -199,14 +199,11 @@ class Patient {
 	public String getLastName() {
 		return lastName;
 	}
-}
 
-class Bill {
-
-	public static double calculateBill(Patient patient) {
-		double surgeryFee = patient.surgery.getSurgeryCost();
-		double surgeonFee = patient.surgery.surgeon.getSurgeonCost();
-		double roomFee = patient.surgery.room.getRoomCost();
+	public double calculateBill() {
+		double surgeryFee = surgery.getSurgeryCost();
+		double surgeonFee = surgery.surgeon.getSurgeonCost();
+		double roomFee = surgery.room.getRoomCost();
 		double hospitalFee = 300;
 		return surgeryFee + surgeonFee + roomFee + hospitalFee;
 	}
